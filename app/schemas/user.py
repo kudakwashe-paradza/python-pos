@@ -4,8 +4,7 @@ from pydantic import BaseModel,ConfigDict
 
 class UserBase(BaseModel):
     employee_code: str
-    first_name: str
-    last_name: str
+    user_name: str
     role: str
     is_active: bool = True
 
@@ -16,13 +15,14 @@ class UserCreate(UserBase):
 
 class UserUpdate(BaseModel):
     employee_code: str | None = None
-    first_name: str | None = None
-    last_name: str | None = None
+    user_name: str | None = None
     role: str | None = None
     is_active: bool | None = None
+    password:str | None=None
 
 
 class UserRead(UserBase):
     model_config = ConfigDict(from_attributes=True)
     id: int
+    is_active:bool
     created_at: datetime    

@@ -1,13 +1,17 @@
 from models.user import User
 from sqlalchemy.orm import Session
+from repositories.base import BaseRepository
 
 class UserRepository:
     def __init__(self):
         self.__model=User
 
-    def get(self,db:Session,id:int):
-        return db.get(User,id)  
+    def get_by_user_name(self,db:Session,user_name:str):
+        return db.get(User).filter(User.user_name).first()  
 
+    def get_by_id(self,db:Session,id:int,user_id:int):
+            return db.query(User).filter(User.user_id==user_id).first()
+    
     def get_all(self,db:Session):
         return db.query(User).all()
 

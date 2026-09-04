@@ -1,13 +1,18 @@
 from fastapi import APIRouter,Depends,status
 from sqlalchemy.orm import Session
 from database import get_db
+from dependencies import get_current_user
 from services import product_service
 from schemas.product import ProductCreate,ProductUpdate,ProductRead
 
 
 
 
-router=APIRouter(prefix="/products", tags=["Products"])
+router=APIRouter(
+    prefix="/products",
+    tags=["Products"],
+    dependencies=[Depends(get_current_user)],
+    )
 
 
 @router.get("/",response_model=list[ProductRead])

@@ -9,8 +9,7 @@ class User(Base):
 
     id=Column(Integer,primary_key=True,index=True)
     employee_code = Column(String, unique=True, nullable=False)
-    first_name = Column(String, nullable=False)
-    last_name = Column(String, nullable=False)
+    user_name = Column(String,unique=True, nullable=False)
     role = Column(String, nullable=False)
     password_hash = Column(String, nullable=False)
     is_active = Column(Boolean, nullable=False, default=True)

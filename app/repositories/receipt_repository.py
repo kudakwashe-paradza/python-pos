@@ -31,5 +31,4 @@ class ReceiptRepository:
         db.delete(db_obj)
         db.commit()
 
-
 receipt_repository = ReceiptRepository()
