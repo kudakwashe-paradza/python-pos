@@ -1,8 +1,4 @@
-"""
-Every router except products used to be reachable with no token at all.
-All routers now require get_current_user, so every one of them should
-reject an unauthenticated request the same way.
-"""
+
 import pytest
 
 

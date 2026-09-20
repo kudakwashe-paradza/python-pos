@@ -1,9 +1,4 @@
-"""
-The category/customer/supplier services follow an identical, working
-get/list/create/update/delete pattern with no foreign-key dependencies.
-One parametrized test covers all three so a regression in any of them
-(or in their generated schema) shows up immediately.
-"""
+
 import pytest
 from fastapi import HTTPException
 

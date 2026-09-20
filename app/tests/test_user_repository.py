@@ -1,10 +1,4 @@
-"""
-repositories/user_repository.py
 
-get_by_user_name() looks up a user by username; get_by_id() looks a user
-up by primary key, matching the two-argument call auth_service.get_user_from_token
-actually uses.
-"""
 from models.user import User
 from repositories.user_repository import user_repository
 

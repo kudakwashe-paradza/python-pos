@@ -1,11 +1,4 @@
-"""
-core/security.py
 
-Password hashing round-trips correctly. Token creation currently does not:
-jwt_algorithm is set to "H256", which is not a real algorithm name (PyJWT
-only knows "HS256"). This means create_access_token() raises for every
-call, which means /auth/login and get_current_user can never succeed.
-"""
 import pytest
 
 from core.security import (

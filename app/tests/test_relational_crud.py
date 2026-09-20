@@ -1,12 +1,4 @@
-"""
-Exercises the services that depend on other rows existing first:
-Product -> Inventory, and User -> Sale -> (SaleItem, Payment, Receipt).
 
-User rows are inserted directly through the model rather than through
-user_service.create_user/auth_service.register, since both of those are
-covered (and shown broken) in test_auth_and_user_service.py. This lets
-the sale/payment/receipt chain be tested independently of that bug.
-"""
 from decimal import Decimal
 
 from models.user import User

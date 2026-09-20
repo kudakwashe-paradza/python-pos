@@ -1,10 +1,4 @@
-"""
-Shared pytest fixtures.
 
-Uses an in-memory SQLite database instead of the real Postgres instance
-`database.py` points at, so the test suite runs anywhere with no external
-services. Each test gets a fresh schema and a fresh session.
-"""
 import pytest
 from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker
@@ -45,12 +39,7 @@ def db_session(engine):
 
 @pytest.fixture()
 def client(engine, monkeypatch):
-    """A TestClient wired to the in-memory DB via dependency override.
-
-    main.py runs `Base.metadata.create_all(bind=engine)` against the real
-    Postgres engine at import time, so `database.engine` is patched to the
-    in-memory engine *before* main is first imported.
-    """
+    
     import database as database_module
     monkeypatch.setattr(database_module, "engine", engine)
 

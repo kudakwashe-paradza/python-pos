@@ -1,10 +1,4 @@
-"""
-repositories/product_repository.py
 
-update() has its commit/refresh/return statements indented inside the
-for-loop body. On the first field it commits and returns immediately, so
-any additional fields passed in `data` are silently dropped.
-"""
 import pytest
 from decimal import Decimal
 

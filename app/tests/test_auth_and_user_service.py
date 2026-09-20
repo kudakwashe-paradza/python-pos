@@ -1,9 +1,4 @@
-"""
-services/auth_service.py and services/user_service.py
 
-These cover both user-creation paths: register() (via auth_service) and
-create_user() (via user_service), plus authenticate() success/failure.
-"""
 import pytest
 from fastapi import HTTPException
 
