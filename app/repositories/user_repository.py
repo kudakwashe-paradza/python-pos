@@ -14,6 +14,9 @@ class UserRepository:
     
     def get_all(self,db:Session):
         return db.query(User).all()
+    
+    def get(self,db:Session,id:int):
+        return db.query(User).filter(User.id==id).first()
 
     def create(self,db:Session,data:dict):
         user = User(**data)

@@ -16,7 +16,6 @@ def engine():
         poolclass=StaticPool,
     )
 
-
     @event.listens_for(eng, "connect")
     def _fk_pragma_on_connect(dbapi_con, _):
         dbapi_con.execute("PRAGMA foreign_keys=ON")
@@ -39,7 +38,7 @@ def db_session(engine):
 
 @pytest.fixture()
 def client(engine, monkeypatch):
-    
+  
     import database as database_module
     monkeypatch.setattr(database_module, "engine", engine)
 
@@ -59,3 +58,23 @@ def client(engine, monkeypatch):
     with TestClient(app) as c:
         yield c
     app.dependency_overrides.clear()
+
+
+@pytest.fixture()
+def auth_headers(db_session):
+  
+    from models.user import User
+    from core.security import create_access_token
+
+    user = User(
+        employee_code="EMP-AUTH",
+        user_name="auth_test_user",
+        role="cashier",
+        password_hash="irrelevant-for-this-fixture",
+    )
+    db_session.add(user)
+    db_session.commit()
+    db_session.refresh(user)
+
+    token = create_access_token(user.id)
+    return {"Authorization": f"Bearer {token}"}
