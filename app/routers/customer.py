@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import customer_service
 from schemas.customer import CustomerCreate, CustomerUpdate, CustomerRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/customers", tags=["Customers"])
+router = APIRouter(prefix="/customers", tags=["Customers"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[CustomerRead])

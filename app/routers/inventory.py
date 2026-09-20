@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import inventory_service
 from schemas.inventory import InventoryCreate, InventoryUpdate, InventoryRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/inventory", tags=["Inventory"])
+router = APIRouter(prefix="/inventory", tags=["Inventory"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[InventoryRead])

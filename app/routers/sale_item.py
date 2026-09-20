@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import sale_item_service
 from schemas.sale_item import SaleItemCreate, SaleItemUpdate, SaleItemRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/sale-items", tags=["Sale Items"])
+router = APIRouter(prefix="/sale-items", tags=["Sale Items"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[SaleItemRead])

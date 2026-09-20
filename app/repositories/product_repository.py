@@ -22,10 +22,10 @@ class ProductRepository:
 
     def update(self,db:Session,db_obj:Product,data:dict):
         for field,value in data.items():
-            setattr(db_obj,field,value)#setattr is used to like assign a new value or name to the existing one
-            db.commit()
-            db.refresh(db_obj)
-            return db_obj
+            setattr(db_obj,field,value)
+        db.commit()
+        db.refresh(db_obj)
+        return db_obj
 
     def delete(self,db:Session,db_obj:Product):
         db.delete(db_obj)

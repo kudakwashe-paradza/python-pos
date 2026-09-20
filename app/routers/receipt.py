@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import receipt_service
 from schemas.receipt import ReceiptCreate, ReceiptUpdate, ReceiptRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/receipts", tags=["Receipts"])
+router = APIRouter(prefix="/receipts", tags=["Receipts"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[ReceiptRead])

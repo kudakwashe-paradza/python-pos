@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import category_service
 from schemas.category import CategoryCreate, CategoryUpdate, CategoryRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/categories", tags=["Categories"])
+router = APIRouter(prefix="/categories", tags=["Categories"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[CategoryRead])

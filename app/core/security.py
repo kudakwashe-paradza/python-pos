@@ -7,7 +7,7 @@ password_hash=PasswordHash.recommended()
 
 
 jwt_secret="change-me-to-a-secret-key-32-chars"
-jwt_algorithm="H256"
+jwt_algorithm="HS256"
 
 def hash_password(password:str)->str:
     return password_hash.hash(password)

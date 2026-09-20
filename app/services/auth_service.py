@@ -19,12 +19,12 @@ def register(db:Session,data:UserCreate):
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,detail="Username is already taken")
 
     values=data.model_dump(exclude={"password"})
-    values["hashed_password"]=hash_password(data.password)
+    values["password_hash"]=hash_password(data.password)
     return user_repository.create(db,values)
 
 def authenicate(db:Session,user_name:str,password:str):
     user=user_repository.get_by_user_name(db,user_name)
-    if not user or not verify_password(password,user.hashed_password):
+    if not user or not verify_password(password,user.password_hash):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail="Incorrect username or password",
                             headers={"WWW-Authenticate":"Bearer"},

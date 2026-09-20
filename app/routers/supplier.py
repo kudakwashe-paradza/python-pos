@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import supplier_service
 from schemas.supplier import SupplierCreate, SupplierUpdate, SupplierRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/suppliers", tags=["Suppliers"])
+router = APIRouter(prefix="/suppliers", tags=["Suppliers"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[SupplierRead])

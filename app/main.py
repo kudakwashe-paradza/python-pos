@@ -3,7 +3,7 @@ import models
 from database import Base,engine
 from routers import product,category,supplier,customer,user,inventory,sale,sale_item,payment,receipt
 
-Base.metadata.create_all(bind=engine) #Creates all tables on startup
+Base.metadata.create_all(bind=engine) 
 
 app=FastAPI(title="POS API",version="1")
 app.include_router(product.router)

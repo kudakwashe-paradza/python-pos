@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from services import payment_service
 from schemas.payment import PaymentCreate, PaymentUpdate, PaymentRead
+from dependencies import get_current_user
 
-
-router = APIRouter(prefix="/payments", tags=["Payments"])
+router = APIRouter(prefix="/payments", tags=["Payments"], dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[PaymentRead])

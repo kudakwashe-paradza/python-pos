@@ -7,10 +7,10 @@ class UserRepository:
         self.__model=User
 
     def get_by_user_name(self,db:Session,user_name:str):
-        return db.get(User).filter(User.user_name).first()  
+        return db.query(User).filter(User.user_name==user_name).first()
 
-    def get_by_id(self,db:Session,id:int,user_id:int):
-            return db.query(User).filter(User.user_id==user_id).first()
+    def get_by_id(self,db:Session,user_id:int):
+        return db.query(User).filter(User.id==user_id).first()
     
     def get_all(self,db:Session):
         return db.query(User).all()
